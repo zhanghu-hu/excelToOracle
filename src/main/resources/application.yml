@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml  #开启mapper扫描，添加分页插件
+  type-aliases-package: cn.excel.entity  #定义实体类位置，写xml可以轻松点
+
+# mybatis sql打印
+logging:
+  level:
+    cn.excel.mapper: debug
+
+spring:
+  # jpa 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: oracle
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
+  # 数据库配置
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: haiyuan
+    password: zhd253
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.excel.mapper.JsPointMapper">
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO JS_POINT(OBJECTID,QR_CODE,FIGURE_POINT,GP_POINT,POINT_CODE,CHARACTERISTICS,APPENDAGES,X,Y,ELEVATION,FIGURE_POINT_X,FIGURE_POINT_Y,
+        ROAD_NAME,MAP_NUMBER,AUXILIARY_TYPE,DELETE_TAG,MC_MATERIAL,MC_DIAMETER,MC_TYPE,MC_OFFSET,REMARK,OPERATION_LIBRARY,WELL_DEPTH,DETECTION_METHODS,
+        DETECTION_TIME,OWNER,DETECTION_UNIT,IN_COMMUNITY,POINT_CODING,ELEMSTIME,ELEMETIME)
+        <foreach collection="list" item="item" index="index" separator="union all">
+            (select
+            #{item.objectID,jdbcType=NUMERIC},#{item.qrCode,jdbcType=VARCHAR},#{item.figurePoint,jdbcType=VARCHAR},#{item.gpPoint,jdbcType=VARCHAR},
+            #{item.pointCode,jdbcType=VARCHAR},#{item.characteristics,jdbcType=VARCHAR},#{item.appendages,jdbcType=VARCHAR},#{item.x,jdbcType=NUMERIC},
+            #{item.y,jdbcType=NUMERIC},#{item.elevation,jdbcType=NUMERIC},#{item.figurePointX,jdbcType=NUMERIC},#{item.figurePointY,jdbcType=NUMERIC},
+            #{item.roadName,jdbcType=VARCHAR},#{item.mapNumber,jdbcType=VARCHAR},#{item.auxiliaryType,jdbcType=VARCHAR},#{item.deleteTag,jdbcType=VARCHAR},
+            #{item.mcMaterial,jdbcType=VARCHAR},#{item.mcDiameter,jdbcType=VARCHAR},#{item.mcType,jdbcType=VARCHAR},#{item.mcOffset,jdbcType=VARCHAR},#{item.remark,jdbcType=VARCHAR},
+            #{item.operationLibrary,jdbcType=VARCHAR},#{item.wellDepth,jdbcType=VARCHAR},#{item.detectionMethods,jdbcType=VARCHAR},
+            #{item.detectionTime,jdbcType=VARCHAR},#{item.owner,jdbcType=VARCHAR},#{item.detectionUnit,jdbcType=VARCHAR},#{item.inCommunity,jdbcType=VARCHAR},
+            #{item.pointCoding,jdbcType=VARCHAR},#{item.ElemSTime,jdbcType=VARCHAR},#{item.ElemETime,jdbcType=VARCHAR}
+            from dual)
+        </foreach>
+    </insert>
+</mapper>

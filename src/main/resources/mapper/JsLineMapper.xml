@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.excel.mapper.JsLineMapper">
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        INSERT INTO
+        js_line(object_id,QR_CODE,LINE_CODE,TO_POINT,END_POINT,TO_DEPTH,END_DEPTH,TYPE,TEXTURE,PIP_DIAMETER,BUILD_TIME,LINE_TYPE,
+        ROAD_NAME,CONNECTION_CODE,TO_ELEVATION,END_ELEVATION,DETECT_TIME,OWNER,DETECTION_UNIT,IN_COMMUNITY,AREA,
+        ELEMSTIME,ELEMETIME,SHAPE_LENGTH)
+        <foreach collection="list" index="index" item="item" separator="union all">
+            (select
+            #{item.objectID,jdbcType=NUMERIC},#{item.qrCode,jdbcType=VARCHAR},#{item.lineCode,jdbcType=VARCHAR},#{item.toPoint,jdbcType=VARCHAR},#{item.endPoint,jdbcType=VARCHAR},
+            #{item.toDepth,jdbcType=NUMERIC},#{item.endDepth,jdbcType=NUMERIC},#{item.type,jdbcType=VARCHAR},#{item.texture,jdbcType=VARCHAR},
+            #{item.pipDiameter,jdbcType=NUMERIC},#{item.buildTime,jdbcType=VARCHAR},#{item.lineType,jdbcType=VARCHAR},#{item.roadName,jdbcType=VARCHAR},
+            #{item.connectionCode,jdbcType=VARCHAR},#{item.toElevation,jdbcType=VARCHAR},#{item.endElevation,jdbcType=VARCHAR},
+            #{item.detectTime,jdbcType=VARCHAR},#{item.owner,jdbcType=VARCHAR},#{item.detectionUnit,jdbcType=VARCHAR},
+            #{item.inCommunity,jdbcType=VARCHAR},#{item.area,jdbcType=VARCHAR},#{item.ElemSTime,jdbcType=VARCHAR},
+            #{item.ElemETime,jdbcType=VARCHAR},#{item.SHAPELength,jdbcType=NUMERIC}
+            from dual)
+        </foreach>
+    </insert>
+</mapper>
